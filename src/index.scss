@@ -59,14 +59,12 @@ header {
   }
 }
 
-.sneakers {
-  display: flex;
-}
+
 
 .content {
   padding: 40px;
 
-  & > div {
+  .searchHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,6 +75,13 @@ header {
       border-radius: 15px;
       padding: 0 15px;
       display: flex;
+      position: relative;
+
+      .searchClear {
+        position: absolute;
+        top: 18px;
+        right: 10px
+      }
     }
 
     h1 {
@@ -93,67 +98,14 @@ header {
 
 }
 
-
-
-.card {
-  border: 1px solid #F3F3F3;
-  border-radius: 40px;
-  padding: 30px;
-  width: 220px;
-  align-items: center;
-  margin-right: 30px;
-
-  transition: box-shadow .2s ease-in-out, transform .2s ease-in-out;
-
-  h5 {
-    font-weight: 400;
-    font-style: 14px;
-  }
-
-  div {
-    display: flex;
-    justify-content: space-between;
-
-    div {
-      display: flex;
-      flex-direction: column;
-      
-    }
-    span {
-      font-size: 13px;
-      text-transform: uppercase;
-      opacity: 0.5;
-    }
-    b {
-      font-size: 14px;
-    }
-  }
-
-  &:hover {
-    box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.06);
-    transform: translateY(-5px);
-  }
+.sneakers {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
 }
-
-.button {
-  background: #FFFFFF;
-  border: 1px solid #F2F2F2;
-  box-sizing: border-box;
-  border-radius: 8px;
-  height: 32px;
-  width: 32px;
-  cursor: pointer;
-}
-
-
-.favorite {
-  position: absolute;
-  cursor: pointer;
-}
-
 
 .overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
 
@@ -252,21 +204,9 @@ flex-direction: column;
       margin-bottom: 20px;
     }
   }
+  
   .greenBtn {
     position: relative;
-
-    &:hover {
-      img {
-        transform: translateX(5px);
-      }
-    }
-
-    img {
-      position: absolute; 
-      top: 21px;
-      right: 30px;
-      transition: transform .2s ease-in-out;
-    }
   }
  
 }
@@ -290,4 +230,58 @@ flex-direction: column;
   &:active {
     background: darken($color: #9DD558, $amount: 5%);
   }
+
+
+  &:hover {
+    img {
+      transform: translateX(5px);
+    }
+  }
+
+  img {
+    position: absolute; 
+    top: 21px;
+    right: 30px;
+    transition: transform .2s ease-in-out;
+  }
+  
 }
+
+
+.btnBack {
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+  }
+  &:hover {
+    img {
+      transform: translateX(-5px);
+    }
+  }
+}
+
+.emptyBasket {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+
+  button {
+    width: 85%;
+    padding-left: 20px;
+  }
+
+  p {
+    color: #000000;
+    font-size: 16px;
+    line-height: 24px;
+    opacity: 0.4;
+    margin-bottom: 40px;
+  }
+}
+
