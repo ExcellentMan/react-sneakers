@@ -1,13 +1,34 @@
+import React from "react";
+import { AppContext } from '../App';
 import Card from "../components/Card/index";
 
 function Home({
-  items,
   searchValue,
   setSearchValue,
   onChangeSearchInput,
   onAddToFavorite,
   onAddToCart,
+  isReady,
 }) {
+  const state = React.useContext(AppContext);
+
+  const renderItems = () => {
+    const filtredItems = state.items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    return (isReady ? [...Array(8)] : filtredItems).map((item, index) => (
+      <Card
+        key={index}
+        onClickPlus={onAddToCart}
+        onClickFavorite={state.onAddToFavorite}
+        favorited={state.favorites.some((obj) => Number(obj.id) === Number(item.id))}
+        loading={isReady}
+        {...item}
+      />
+    ));
+  };
+
   return (
     <div className="content">
       <div className="searchHeader">
@@ -32,21 +53,8 @@ function Home({
           )}
         </div>
       </div>
-
-      <div className="sneakers">
-        {items
-          .filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((item, index) => (
-            <Card
-              key={index}
-              onClickPlus={onAddToCart}
-              onClickFavorite={onAddToFavorite}
-                {...item}
-            />
-          ))}
-      </div>
+      {/* {console.log(cartItems, items)} */}
+      <div className="sneakers">{renderItems()}</div>
     </div>
   );
 }
